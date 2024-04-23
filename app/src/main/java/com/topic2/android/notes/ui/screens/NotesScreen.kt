@@ -20,6 +20,11 @@ import com.topic2.android.notes.ui.components.Note
 import com.topic2.android.notes.ui.components.TopAppBar
 import com.topic2.android.notes.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.icons.filled.Add
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -48,6 +53,19 @@ fun NotesScreen(
                     coroutineScope.launch {
                         scaffoldState.drawerState.close()
                     }
+                }
+            )
+        },
+        floatingActionButtonPosition = FabPosition.End,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { viewModel.onCreateNewNoteClick() },
+                contentColor = MaterialTheme.colors.background,
+                content = {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Add Note Button"
+                    )
                 }
             )
         },
