@@ -39,6 +39,7 @@ import com.topic2.android.notes.domain.model.NEW_NOTE_ID
 import com.topic2.android.notes.domain.model.NoteModel
 import com.topic2.android.notes.routing.NotesRouter
 import com.topic2.android.notes.util.fromHex
+import androidx.compose.material.Switch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalMaterialApi
@@ -131,6 +132,27 @@ private fun PickedColor(color:ColorModel){
             size = 40.dp,
             border = 1.dp,
             modifier = Modifier.padding(4.dp)
+        )
+    }
+}
+
+@Composable
+private fun NoteCheckOption(
+    isChecked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row(
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Can note be checked off?", modifier = Modifier.weight(1f)
+        )
+        Switch(
+            checked = isChecked,
+            onCheckedChange = onCheckedChange,
+            modifier = Modifier.padding(start = 8.dp)
         )
     }
 }
@@ -229,4 +251,18 @@ fun ColorPickerPreview(){
             ColorModel.DEFAULT
         )
     ){}
+}
+
+}
+
+@Preview
+@Composable
+fun PickedColorPreview(){
+    PickedColor(ColorModel.DEFAULT)
+}
+
+@Preview
+@Composable
+fun NoteCheckOptionPreview() {
+    NoteCheckOption(false) {}
 }
