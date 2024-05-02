@@ -57,6 +57,7 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.activity.compose.BackHandler
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalMaterialApi
@@ -74,6 +75,16 @@ fun SaveNoteScreen(viewModel: MainViewModel){
         mutableStateOf(false)
     }
 
+    BackHandler(
+        onBack = {
+            if(bottomDrawerState.isOpen){
+                coroutineScope.launch{ bottomDrawerState.close()}
+            } else{
+                NotesRouter.navigateTo(Screen.Notes)
+            }
+        }
+    )
+    
     Scaffold (
         topBar = {
             val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
