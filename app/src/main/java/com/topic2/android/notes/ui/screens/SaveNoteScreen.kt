@@ -38,6 +38,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import com.topic2.android.notes.domain.model.NEW_NOTE_ID
 import com.topic2.android.notes.domain.model.NoteModel
 import com.topic2.android.notes.routing.NotesRouter
+import com.topic2.android.notes.util.fromHex
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalMaterialApi
@@ -111,6 +112,27 @@ private fun SaveNoteTopAppBar(
             }
         }
     )
+}
+
+@Composable
+private fun PickedColor(color:ColorModel){
+    Row (
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Picked color", modifier = Modifier
+                .weight(1f)
+                .align(Alignment.CenterVertically)
+        )
+        NoteColor(
+            color = Color.fromHex(color.hex),
+            size = 40.dp,
+            border = 1.dp,
+            modifier = Modifier.padding(4.dp)
+        )
+    }
 }
 
 @Composable
