@@ -22,6 +22,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import com.topic2.android.notes.routing.NotesRouter
 import com.topic2.android.notes.ui.screens.SaveNoteScreen
+import com.topic2.android.notes.ui.screens.TrashScreen
 
 
 /**
@@ -37,11 +38,12 @@ class MainActivity : AppCompatActivity() {
   })
 
   @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+  @ExperimentalMaterialApi
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     setContent {
-      NotesScreen(viewModel = viewModel)
+      MainActivityScreen(viewModel = viewModel)
 
       }
     }

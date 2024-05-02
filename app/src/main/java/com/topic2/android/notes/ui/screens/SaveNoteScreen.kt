@@ -19,10 +19,74 @@ import com.topic2.android.notes.domain.model.ColorModel
 import com.topic2.android.notes.ui.components.NoteColor
 import com.topic2.android.notes.util.fromHex
 import com.topic2.android.notes.viewmodel.MainViewModel
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
+import com.topic2.android.notes.routing.Screen
+import com.topic2.android.notes.R
+import androidx.compose.ui.res.painterResource
 
 @Composable
 fun SaveNoteScreen(viewModel: MainViewModel){
 
+}
+
+@Composable
+private fun SaveNoteTopAppBar(
+    isEditingMode: Boolean,
+    onBackClick: ()->Unit,
+    onSaveNoteClick: ()->Unit,
+    onOpenColorPickerClick: ()->Unit,
+    onDeleteNoteClick: ()->Unit
+){
+    TopAppBar (
+        title = {
+            Text(
+                text = "Save Note",
+                color = MaterialTheme.colors.onPrimary
+            )
+        },
+        navigationIcon = {
+            IconButton(onClick = onBackClick) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Save Note Button",
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = onSaveNoteClick) {
+                Icon(
+                    imageVector = Icons.Default.Check,
+                    contentDescription = "SaveNote",
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
+            IconButton(onClick = onOpenColorPickerClick) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_baseline_color_lens_24),
+                    contentDescription = "Open Color Picker Button",
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
+
+            if (isEditingMode){
+                IconButton(onClick = onDeleteNoteClick) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete Note Button",
+                        tint = MaterialTheme.colors.onPrimary
+                    )
+                }
+            }
+        }
+    )
 }
 
 @Composable
