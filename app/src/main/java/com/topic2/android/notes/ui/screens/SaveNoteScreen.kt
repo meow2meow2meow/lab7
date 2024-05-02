@@ -40,6 +40,8 @@ import com.topic2.android.notes.domain.model.NoteModel
 import com.topic2.android.notes.routing.NotesRouter
 import com.topic2.android.notes.util.fromHex
 import androidx.compose.material.Switch
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalMaterialApi
@@ -112,6 +114,26 @@ private fun SaveNoteTopAppBar(
                 }
             }
         }
+    )
+}
+
+@Composable
+private fun ContentTextField(
+    modifier: Modifier = Modifier,
+    label: String,
+    text: String,
+    onTextChange: (String) -> Unit
+) {
+    TextField(
+        value = text,
+        onValueChange = onTextChange,
+        label = { Text(label)},
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.surface
+        )
     )
 }
 
@@ -253,8 +275,6 @@ fun ColorPickerPreview(){
     ){}
 }
 
-}
-
 @Preview
 @Composable
 fun PickedColorPreview(){
@@ -265,4 +285,14 @@ fun PickedColorPreview(){
 @Composable
 fun NoteCheckOptionPreview() {
     NoteCheckOption(false) {}
+}
+
+@Preview
+@Composable
+fun ContentTextFieldPreview() {
+    ContentTextField(
+        label = "Title",
+        text = "",
+        onTextChange = {}
+    )
 }
