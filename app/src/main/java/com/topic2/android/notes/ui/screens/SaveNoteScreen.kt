@@ -84,7 +84,7 @@ fun SaveNoteScreen(viewModel: MainViewModel){
             }
         }
     )
-    
+
     Scaffold (
         topBar = {
             val isEditingMode: Boolean = noteEntry.id != NEW_NOTE_ID
